@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { userNameDropDownOnTopBar } from "../utils/selectors";
 
 test.describe("Login Page", () => {
   let page: Page;
@@ -17,8 +18,8 @@ test.describe("Login Page", () => {
     await page.getByRole("textbox", { name: "Password" }).fill("admin123");
     await page.getByRole("button", { name: "Login" }).click();
     await expect(
-      page.locator("span").filter({ hasText: "FirstNameTest LastNameTest" })
-    ).toBeVisible();
+      page.locator(userNameDropDownOnTopBar)
+    ).toContainText('FirstNameTest LastNameTest');
     await expect(
       page.getByRole("heading", { name: "Dashboard" })
     ).toBeVisible();
