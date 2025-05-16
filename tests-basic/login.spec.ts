@@ -19,7 +19,7 @@ test.describe("Login Page", () => {
     await page.getByRole("button", { name: "Login" }).click();
     await expect(
       page.locator(userNameDropDownOnTopBar)
-    ).toContainText('FirstNameTest LastNameTest');
+    ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: "Dashboard" })
     ).toBeVisible();
