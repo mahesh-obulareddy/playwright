@@ -36,5 +36,5 @@ jobs:
         with:
           # v4 requires every artifact name in a run to be unique
           name: playwright-results-${{ github.sha }}
-          path: test-results/
+          path: playwright-report/index.html
           if-no-files-found: warn         # fail loudly if path is wrong
