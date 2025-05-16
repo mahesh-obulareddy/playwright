@@ -21,3 +21,9 @@ jobs:
 
             - name: Run Playwright tests from tests-basic folder
               run: npx playwright test tests-basic
+
+            - name: Upload test results
+              uses: actions/upload-artifact@v3
+              with:
+                  name: playwright-results
+                  path: test-results/
