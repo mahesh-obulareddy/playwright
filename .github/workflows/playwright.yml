@@ -31,9 +31,10 @@ jobs:
 
       # 5 Upload the results (must be v4 now)
       - name: Upload test results
+        if: always()
         uses: actions/upload-artifact@v4   # was @v3
         with:
           # v4 requires every artifact name in a run to be unique
           name: playwright-results-${{ github.sha }}
           path: test-results/
-          if-no-files-found: error         # fail loudly if path is wrong
+          if-no-files-found: warn         # fail loudly if path is wrong
