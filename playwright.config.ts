@@ -35,8 +35,13 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'tests-basic',
       testDir: './tests-basic',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'tests-fixtures-basic',
+      testDir: './tests-fixtures-basic',
       use: { ...devices['Desktop Chrome'] },
     },
 

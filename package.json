@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "tests-basic": "npx playwright test --project=chromium"
+    "tests-basic": "npx playwright test --project=tests-basic",
+    "tests-fixtures-basic": "npx playwright test --project=tests-fixtures-basic"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,40 @@
+name: Run Playwright Tests with Basic Fixtures
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 Checkout (latest major = v4)
+      - name: Checkout repository
+        uses: actions/checkout@v4          # was @v3
+
+      # 2 Node (latest major = v4)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4        # was @v3
+        with:
+          node-version: '18'
+          cache: 'npm'                     # optional but saves time
+
+      # 3 Install dependencies & Playwright browsers
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      # 4 Run only the basic test suite
+      - name: Run Playwright tests from tests-basic folder
+        run: npm run tests-fixtures-basic
+
+      # 5 Upload the results (must be v4 now)
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4   # was @v3
+        with:
+          # v4 requires every artifact name in a run to be unique
+          name: playwright-results-${{ github.sha }}
+          path: playwright-report/index.html
+          if-no-files-found: warn         # fail loudly if path is wrong
